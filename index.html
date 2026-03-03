@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITE-399 </title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">Students Complaint & Feedback Management </span></a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Categories</a>
+            <a href="#submit">Submit Portal</a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <img src="ha.jpg"  alt="Home Background" class="hero-img">
+        <div class="hero-content">
+            <h1>We Help Students Grow <span>And Resolve</span></h1>
+            <br>
+            <a href="#submit" class="btn btn-gold" onclick="setMode('complaint')">File a Complaint</a>
+            <a href="#submit" class="btn btn-white" onclick="setMode('feedback')">Give Feedback</a>
+        </div>
+    </header>
+
+    <section id="about" class="about-container">
+        <div class="about-text">
+            <h2>Your Voice <span>Matters</span></h2>
+            <div class="gold-line"></div>
+            <p>Our Student Complaint and Feedback Management is built on the fundamental belief that every voice matters. In a large academic environment, it is easy for individual concerns to feel lost in the noise, but we recognize that progress is driven by the diverse perspectives of our students. </p>
+            <p>By ensuring that every voice is captured, tracked, and respected, we move beyond simple problem-solving and toward a culture of mutual respect and continuous growth.</p>
+            <a href="#submit" class="btn btn-gold">Get Started</a>
+        </div>
+        <div class="about-image">
+            <img src="talk.jpg" alt="Student Life">
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2>Categories</h2>
+        <div class="gold-line" style="margin: 10px auto;"></div>
+        <div class="grid">
+            <div class="service-card">
+                <span class="card-icon">🏢</span>
+                <h3>Rooms & Facilities</h3>
+                <p>Feedback / Report issues with AC, lighting, furniture, or classroom maintenance.</p>
+            </div>
+            <div class="service-card">
+                <span class="card-icon">🍴</span>
+                <h3>Cafeteria</h3>
+                <p>Feedback / Report issues on food quality, hygiene, and dining hall services.</p>
+            </div>
+            <div class="service-card">
+                <span class="card-icon">🎓</span>
+                <h3>School Concerns</h3>
+                <p>General administrative issues, security, or student service feedback.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="submit" class="form-section">
+        <h2>Submit Your Complaint | Feedbacks</h2>
+        <div class="gold-line" style="margin: 10px auto;"></div>
+        
+        <div class="toggle-group">
+            <div id="cToggle" class="toggle-btn active-comp" onclick="setMode('complaint')">FILE COMPLAINT</div>
+            <div id="fToggle" class="toggle-btn" onclick="setMode('feedback')">GIVE FEEDBACK</div>
+        </div>
+
+        <form class="feedback-form" id="mainForm">
+            <input type="hidden" id="submissionType" value="complaint">
+            
+            <label>Categories </label>
+            <select required>
+                <option value="rooms">Rooms & Facilities</option>
+                <option value="cafeteria">Cafeteria</option>
+                <option value="school">General School Concerns</option>
+            </select>
+
+            <label>Subject</label>
+            <input type="text" placeholder="e.g. The rooms is good but the AC is not working
+            " required>
+
+            <label>Details</label>
+            <textarea rows="5" id="detailText" placeholder="Describe the complaint in detail..." required></textarea>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">SUBMIT</button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; Student Complaint & Feedback Management System | ITE - 399
+    </footer>
+
+    <script>
+        function setMode(mode) {
+            const cToggle = document.getElementById('cToggle');
+            const fToggle = document.getElementById('fToggle');
+            const typeInput = document.getElementById('submissionType');
+            const submitBtn = document.getElementById('submitBtn');
+            const detailText = document.getElementById('detailText');
+
+            if (mode === 'complaint') {
+                cToggle.className = 'toggle-btn active-comp';
+                fToggle.className = 'toggle-btn';
+                typeInput.value = 'complaint';
+                submitBtn.innerText = 'SUBMIT COMPLAINT';
+                submitBtn.style.background = '#d9534f';
+                detailText.placeholder = 'Describe the complaint in detail...';
+            } else {
+                fToggle.className = 'toggle-btn active-feed';
+                cToggle.className = 'toggle-btn';
+                typeInput.value = 'feedback';
+                submitBtn.innerText = 'SUBMIT FEEDBACK';
+                submitBtn.style.background = '#5cb85c';
+                detailText.placeholder = 'Share your positive feedback or suggestions...';
+            }
+        }
+
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const type = document.getElementById('submissionType').value;
+            alert('Success! Your ' + type + ' has been logged for administrative review.');
+        });
+    </script>
+</body>
+</html>
